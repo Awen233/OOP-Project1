@@ -23,7 +23,6 @@ public class TwoDArray {
 		this.defaultVal = defaultVal;
 		map = new HashMap<>(); 
 		fill(array, defaultVal);
-		
 	}
 	
 	public void initArray(int defaultVal) {
@@ -50,11 +49,22 @@ public class TwoDArray {
 		 * Note: Print the int value in place of (). 
 		 * e.g., replace (val) with val.
 		 */
+		if(row >= array.length || col >= array[0].length) {
+			return "out of bound, please enter again";
+		}
+		
 		if(val == defaultVal) {
 			return "Failure: " + val + " is not allowed";
 		} else if ( array[row][col] != defaultVal) {
 			return "Failure: " + row + ", " + col + " is not empty";
 		} else {
+			int temp = array[row][col];
+			int cur = map.get(temp);
+			if(cur == 1) {
+				map.remove(temp);
+			} else {
+				map.put(temp, cur - 1);
+			}
 			array[row][col] = val;
 		}
 		int count = map.getOrDefault(val, 0);
@@ -66,6 +76,11 @@ public class TwoDArray {
 		/*TODO - Return the value at the specified row, col
 		 * 
 		 */
+		if(row >= array.length || col >= array[0].length) {
+			return -1;
+		}
+		
+		
 		return array[row][col];
 	}
 	
